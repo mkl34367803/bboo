@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache>
+	<!-- maxElementsInMemory设定内存中创建对象的最大值 -->
+	<!-- eternal设置元素（译注：内存中对象）是否永久驻留。如果是，将忽略超 时限制且元素永不消亡 -->
+	<!-- overflowToDisk设置当内存中缓存达到 maxInMemory 限制时元素是否可写到磁盘上 -->
+	<!-- timeToIdleSeconds设置某个元素消亡前的停顿时间。 也就是在一个元素消亡之前，两次访问时间的最大时间间隔值。这只能在元素不是永久驻留时有效（译注：如果对象永恒不灭，则 
+		设置该属性也无用）。如果该值是 0 就意味着元素可以停顿无穷长的时间。 -->
+	<!-- timeToLiveSeconds为元素设置消亡前的生存时间。 也就是一个元素从构建到消亡的最大时间间隔值。 这只能在元素不是永久驻留时有效。 -->
+	<!-- diskPersistent是否disk store在虚拟机启动时持久化。默认为false -->
+	<!-- diskExpiryThreadIntervalSeconds运行disk终结线程的时间，默认为120秒 -->
+	<!--MemoryStore支持三种策略：LRU、LFU、FIFO。 1.LRU:最近最少使用的，缓存的元素有一个时间戳，当缓存容量满了，而又需要腾出地方来缓存新的元素的时候，那么现有缓存元素中时间戳离当前时间最远的元素将被清除缓存。 
+		2.LFU:最少被使用，缓存的元素有一个hit属性，hit值最小的将会被清除缓存。 3.FIFO:先进先出 -->
+	<diskStore path="java.io.tmpdir" />
+	<defaultCache maxElementsInMemory="100000" eternal="false"
+		overflowToDisk="true" timeToIdleSeconds="50000" timeToLiveSeconds="100000"
+		diskPersistent="false" diskExpiryThreadIntervalSeconds="120" />
+	<cache name="DB_BBOO_KEY_VAL_DATA_NAME_0001" maxElementsInMemory="50000"
+		maxElementsOnDisk="200000" eternal="false" overflowToDisk="true"
+		diskSpoolBufferSizeMB="20" timeToIdleSeconds="30000" timeToLiveSeconds="60000"
+		memoryStoreEvictionPolicy="LFU">
+	</cache>
+	<cache name="DB_BBOO_OFF_VAL_DATA_NAME_0002" maxElementsInMemory="50000"
+		maxElementsOnDisk="200000" eternal="false" overflowToDisk="true"
+		diskSpoolBufferSizeMB="20" timeToIdleSeconds="30000" timeToLiveSeconds="60000"
+		memoryStoreEvictionPolicy="LFU">
+	</cache>
+	<cache name="DB_BBOO_AFTER_POLICY_DATA_NAME_0003"
+		maxElementsInMemory="500000" maxElementsOnDisk="20000" eternal="false"
+		overflowToDisk="true" diskSpoolBufferSizeMB="20" timeToIdleSeconds="30000"
+		timeToLiveSeconds="60000" memoryStoreEvictionPolicy="LFU">
+	</cache>
+	<cache name="DB_BBOO_CABIN_MAPS_DATA_NAME_0004"
+		maxElementsInMemory="500000" maxElementsOnDisk="20000" eternal="false"
+		overflowToDisk="true" diskSpoolBufferSizeMB="20" timeToIdleSeconds="30000"
+		timeToLiveSeconds="60000" memoryStoreEvictionPolicy="LFU">
+	</cache>
+</ehcache>

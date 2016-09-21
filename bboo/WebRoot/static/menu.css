@@ -1,0 +1,88 @@
+
+body {
+	margin: 0px; font-size:13px;
+}
+
+img { border:0px; }
+TD {
+	FONT-SIZE: 13px
+}
+INPUT {
+	FONT-SIZE: 12px;
+}
+SELECT {
+	FONT-SIZE: 12px;
+}
+TEXTAREA {
+	FONT-SIZE: 12px;
+}
+A:link {
+	COLOR: #67087B; TEXT-DECORATION: none
+}
+A:visited {
+	COLOR: #67087B; TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: #8E569B; TEXT-DECORATION: underline
+}
+
+.blue {
+	COLOR: #67087B
+}
+.huang {
+	COLOR: #ffff00
+}
+A.huang:link {
+	COLOR: #ffff00
+}
+A.huang:visited {
+	COLOR: #ffff00
+}
+A.huang:hover {
+	COLOR: #F3F0C2
+}
+
+.zi {
+	COLOR: #67087B; TEXT-DECORATION: none
+}
+A.zi:link {
+	COLOR: #67087B; TEXT-DECORATION: none
+}
+A.zi:visited {
+	COLOR: #67087B; TEXT-DECORATION: none
+}
+A.zi:hover {
+	COLOR: #8E569B; TEXT-DECORATION: underline
+}
+
+.white {
+	COLOR: #ffffff; TEXT-DECORATION: none
+}
+A.white:link {
+	COLOR: #ffffff; TEXT-DECORATION: none
+}
+A.white:visited {
+	COLOR: #ffffff; TEXT-DECORATION: none
+}
+A.white:hover {
+	COLOR: #ffff00; TEXT-DECORATION: underline
+}
+.bold {
+	FONT-WEIGHT: bold
+}
+.bn { width:52px; height:23px; line-height:23px; background:url(../images/bn.gif) no-repeat; font-size:12px; color:#FFFFFF; border:#FFFFFF solid 0px; }
+.bn2 { width:96px; height:23px; line-height:23px; background:url(../images/bn2.gif) no-repeat; font-size:12px; color:#FFFFFF; border:#FFFFFF solid 0px; }
+.tb1 { line-height:26px; color:#333333;}
+
+fieldset {border:0;}
+.title1 {color: #9D59AD; font-family:"宋体"; }
+.title2 {color: #3D3D3D; font-weight: bold; }
+
+.input0 { width:100px; height:15px; }
+.input1 { width:160px; height:15px; }
+.input2 { width:220px; height:15px; }
+.input3 { width:400px; height:15px; }
+.input4 { width:560px; height:15px; }
+
+.openbox { width:150px; padding:6px; border:#8E569B 2px solid; }
+.openbox2 { width:100px; padding:6px; border:#8E569B 2px solid; }

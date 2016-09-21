@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="bboo">
+        <wb-resource deploy-path="/" source-path="/WebRoot" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/frame"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/controller"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/model"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/delegate"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/services"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/build"/>
+        <property name="java-output-path" value="/bboo/WebRoot/WEB-INF/classes"/>
+        <property name="context-root" value="bboo"/>
+    </wb-module>
+</project-modules>

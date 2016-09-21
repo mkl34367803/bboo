@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="GBK"?>  
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans>
+	<bean id="OScheduler"
+		class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="autoStartup">
+			<value>true</value>
+		</property>
+		<property name="triggers">
+			<list>
+				<!-- TEST -->
+				<!--<ref local="TestTrigger" /> -->
+				<!-- 查询客票状态 -->
+				<!-- <ref local="QueryTicketStateTrigger" /> -->
+				<!-- 自动同步国际的订单 -->
+				<!-- <ref local="SyncNationOrderTrigger" /> -->
+				<!-- 自动同步国内的订单 -->
+				<ref local="SyncNationOrderTriggerNation" />
+				<!-- 同步分销平台订单状态，修改票号和订单状态 -->
+				<!--<ref local="ModifyGjOrderStateTrigger" /> -->
+				<!-- 同步分销平台订单状态，修改票号和订单状态 -->
+				<!--<ref local="ModifyGnOrderStateTrigger" /> -->
+				<!-- 自动同步公布运价 -->
+				<!-- <ref local="ModifyAirFDPriceTrigger" /> -->
+				<!-- 自动保存订单航班时刻数据 -->
+				<!--<ref local="CacheOrderFltTimeTrigger" /> -->
+
+			</list>
+		</property>
+	</bean>
+	<!-- 自动保存订单航班时刻数据 -->
+	<bean id="CacheOrderFltTimeTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<ref bean="CacheOrderFltTimeTrigger_time" />
+		</property>
+		<property name="cronExpression">
+			<value>0 0/5 0-23 * * ?</value>
+		</property>
+	</bean>
+	<bean id="CacheOrderFltTimeTrigger_time"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="CacheOrderFlightTimeTrigger" />
+		</property>
+		<property name="targetMethod">
+			<value>syncdata</value>
+		</property>
+		<property name="concurrent" value="false" />
+	</bean>
+	<!-- 自动同步公布运价 -->
+	<bean id="ModifyAirFDPriceTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<ref bean="ModifyAirFDPriceTrigger_time" />
+		</property>
+		<property name="cronExpression">
+			<value>0 30 8 * * ?</value>
+		</property>
+	</bean>
+	<bean id="ModifyAirFDPriceTrigger_time"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="ModifyAirPriceDataTrigger" />
+		</property>
+		<property name="targetMethod">
+			<value>syncdata</value>
+		</property>
+		<property name="concurrent" value="false" />
+	</bean>
+	<!-- Test -->
+	<bean id="QueryTicketStateTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<ref bean="BBOOQueryTicketStateTrigger_time" />
+		</property>
+		<property name="cronExpression">
+			<value>0 0/3 0-23 * * ?</value>
+		</property>
+	</bean>
+	<bean id="BBOOQueryTicketStateTrigger_time"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="BBOOQueryTicketStateTrigger" />
+		</property>
+		<property name="targetMethod">
+			<value>syncdata</value>
+		</property>
+		<property name="concurrent" value="false" />
+	</bean>
+
+	<!-- Test -->
+	<bean id="TestTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<ref bean="TestTrigger_time" />
+		</property>
+		<property name="cronExpression">
+			<value>0 0/1 0-23 * * ?</value>
+		</property>
+	</bean>
+	<bean id="TestTrigger_time"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="OOTestTrigger" />
+		</property>
+		<property name="targetMethod">
+			<value>test</value>
+		</property>
+		<property name="concurrent" value="false" />
+	</bean>
+
+	<!-- 自动扫描订单 -->
+	<bean id="SyncNationOrderTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<ref bean="SyncNationOrderTrigger_time" />
+		</property>
+		<!-- 可以修改这个corn表达式，让程序在指定的时间触发 -->
+		<property name="cronExpression">
+			<value>0 0/1 0-23 * * ?</value>
+		</property>
+	</bean>
+	<bean id="SyncNationOrderTrigger_time"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="BBOOSyncNationOrderTrigger" />
+		</property>
+		<property name="targetMethod">
+			<value>syncOrder</value>
+		</property>
+		<property name="concurrent" value="false" />
+	</bean>
+
+
+	<!-- 自动扫描订单(国内的) -->
+	<bean id="SyncNationOrderTriggerNation" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<ref bean="SyncNationOrderTrigger_timeNation" />
+		</property>
+		<!-- 可以修改这个corn表达式，让程序在指定的时间触发 -->
+		<property name="cronExpression">
+			<value>0 0/1 0-23 * * ?</value>
+		</property>
+	</bean>
+	<bean id="SyncNationOrderTrigger_timeNation"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="BBOOSyncNationOrderTrigger" />
+		</property>
+		<property name="targetMethod">
+			<value>syncNationalOrder</value>
+		</property>
+		<property name="concurrent" value="false" />
+	</bean>
+
+
+	<!-- 同步分销平台订单状态，修改票号和订单状态 -->
+	<bean id="ModifyGjOrderStateTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<ref bean="ModifyGjOrderStateTrigger_time" />
+		</property>
+		<!-- 可以修改这个corn表达式，让程序在指定的时间触发 -->
+		<property name="cronExpression">
+			<value>0 0/1 0-23 * * ?</value>
+		</property>
+	</bean>
+	<bean id="ModifyGjOrderStateTrigger_time"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="BBOOModifyOrderStateTrigger" />
+		</property>
+		<property name="targetMethod">
+			<value>syncGjOrderState</value>
+		</property>
+		<property name="concurrent" value="false" />
+	</bean>
+	<!-- 同步分销平台订单状态，修改票号和订单状态 -->
+	<bean id="ModifyGnOrderStateTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<ref bean="ModifyGnOrderStateTrigger_time" />
+		</property>
+		<!-- 可以修改这个corn表达式，让程序在指定的时间触发 -->
+		<property name="cronExpression">
+			<value>0 0/1 0-23 * * ?</value>
+		</property>
+	</bean>
+	<bean id="ModifyGnOrderStateTrigger_time"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="BBOOModifyOrderStateTrigger" />
+		</property>
+		<property name="targetMethod">
+			<value>syncGnOrderState</value>
+		</property>
+		<property name="concurrent" value="false" />
+	</bean>
+</beans>  

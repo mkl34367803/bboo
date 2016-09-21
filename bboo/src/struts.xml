@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+    <!-- Action 提交后缀名 -->
+    <constant name="struts.action.extension" value="do"/>
+    <!-- Struts2的action由Spring来负责进行实例化-->
+    <constant name="struts.objectFactory" value="spring"/>
+    <!-- 设置各个ACTION默认继承哪个package -->
+    <constant name="struts.convention.default.parent.package"
+     value="erich-default"/>
+    <!--对指定包下面自动搜寻ACTION,并实例化  -->
+    <constant name="struts.convention.action.packages" value="action"/>
+    <!-- 设置默认JSP根页面路径 -->
+    <constant name="struts.convention.result.path" value="/jsp/"/>
+    <!-- 修改ACTION配制时，自动加载 -->
+    <constant name="struts.convention.classes.reload" value="true"/>
+    <!-- 命名规则定义 -->
+    <constant name="struts.convention.action.name.separator"
+     value="-"/>
+    <!-- 上传文件大小限制 -->
+    <constant name="struts.multipart.maxSize" value="5000000000"/>
+    
+    <package name="erich-default" extends="convention-default">
+        <interceptors>
+            <interceptor name="trimInterceptor" class="com.smart.framework.interceptor.TrimInterceptor"/>
+			<interceptor name="loggerInterceptor" class="com.smart.framework.interceptor.LoggerInterceptor"/>
+            <interceptor-stack name="trimStack">
+                <interceptor-ref name="trimInterceptor"/>
+				<interceptor-ref name="paramsPrepareParamsStack"/>
+                <interceptor-ref name="defaultStack"/>
+            </interceptor-stack>
+			<interceptor-stack name="logStack">
+                <interceptor-ref name="loggerInterceptor"/>
+				<interceptor-ref name="paramsPrepareParamsStack"/>
+                <interceptor-ref name="defaultStack"/>
+            </interceptor-stack>
+        </interceptors>
+    </package>
+</struts>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns="http://www.springframework.org/schema/beans"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+     http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+     http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+     http://www.springframework.org/schema/context
+     http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+	<!--缓存 -->
+	<bean id="CacheManager"
+		class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+		<property name="configLocation">
+			<value>classpath:ehcache.xml</value>
+		</property>
+	</bean>
+	<bean id="DB_BBOO_KEY_VAL_DATA_NAME_0001" class="org.springframework.cache.ehcache.EhCacheFactoryBean">
+		<property name="cacheManager">
+			<ref local="CacheManager" />
+		</property>
+		<property name="cacheName" value="DB_BBOO_KEY_VAL_DATA_NAME_0001" />
+	</bean>
+	<bean id="DB_BBOO_OFF_VAL_DATA_NAME_0002" class="org.springframework.cache.ehcache.EhCacheFactoryBean">
+		<property name="cacheManager">
+			<ref local="CacheManager" />
+		</property>
+		<property name="cacheName" value="DB_BBOO_OFF_VAL_DATA_NAME_0002" />
+	</bean>
+
+	<bean id="DB_BBOO_AFTER_POLICY_DATA_NAME_0003" class="org.springframework.cache.ehcache.EhCacheFactoryBean">
+		<property name="cacheManager">
+			<ref local="CacheManager" />
+		</property>
+		<property name="cacheName" value="DB_BBOO_AFTER_POLICY_DATA_NAME_0003" />
+	</bean>
+
+	<bean id="DB_BBOO_CABIN_MAPS_DATA_NAME_0004" class="org.springframework.cache.ehcache.EhCacheFactoryBean">
+		<property name="cacheManager">
+			<ref local="CacheManager" />
+		</property>
+		<property name="cacheName" value="DB_BBOO_CABIN_MAPS_DATA_NAME_0004" />
+	</bean>
+	<bean id="DB_BBOO_BOOKRULE_DATA_NAME_0005" class="org.springframework.cache.ehcache.EhCacheFactoryBean">
+		<property name="cacheManager">
+			<ref local="CacheManager" />
+		</property>
+		<property name="cacheName" value="DB_BBOO_BOOKRULE_DATA_NAME_0005" />
+	</bean>
+</beans>

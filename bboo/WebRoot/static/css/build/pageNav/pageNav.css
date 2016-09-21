@@ -1,0 +1,16 @@
+@CHARSET "UTF-8";
+
+.pageNum {
+	border: 1px solid #999;
+	padding: 2px 8px;
+	display: inline-block;
+}
+
+.cPageNum {
+	font-weight: bold;
+	padding: 2px 5px;
+}
+
+#pageNav {
+	float: right;;
+}
